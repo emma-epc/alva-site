@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALVA. · Bientôt</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-display),sans-serif;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:100vh;
+  position:relative;
+}
+
+/* ── Grain ── */
+.grain{
+  position:fixed;inset:0;pointer-events:none;z-index:100;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  opacity:.5;mix-blend-mode:multiply;
+}
+
+/* ── Halos ── */
+.halo-wrap{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  mix-blend-mode:multiply;
+}
+.hblob{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:0;
+  will-change:transform,opacity;
+}
+.hb1{width:55vw;height:55vw;background:var(--halo-sand);top:-10%;left:-10%}
+.hb2{width:45vw;height:45vw;background:var(--halo-rose);bottom:-5%;right:-5%}
+.hb3{width:35vw;height:35vw;background:var(--halo-sage);top:30%;left:40%}
+
+/* ── Glows hero ── */
+.hero-glow{position:fixed;border-radius:50%;pointer-events:none;opacity:0;filter:blur(90px)}
+.hg1{width:40vw;height:40vw;background:radial-gradient(circle,var(--cognac-100) 0%,transparent 70%);top:-15%;left:10%}
+.hg2{width:30vw;height:30vw;background:radial-gradient(circle,var(--halo-rose) 0%,transparent 70%);bottom:10%;right:5%}
+.hg3{width:25vw;height:25vw;background:radial-gradient(circle,var(--halo-sage) 0%,transparent 70%);top:40%;left:60%}
+
+/* ── Courbes SVG ── */
+.hero-contour{
+  position:fixed;inset:0;width:100%;height:100%;
+  pointer-events:none;z-index:1;opacity:0;
+}
+.hc-path{fill:none;stroke:var(--cognac);stroke-width:1px;opacity:0;stroke-dasharray:2000;stroke-dashoffset:2000}
+
+/* ── Flash / Onde ── */
+.hero-flash{
+  position:fixed;inset:0;pointer-events:none;z-index:5;
+  background:radial-gradient(circle at 50% 45%,rgba(185,122,69,.18) 0%,transparent 60%);
+  opacity:0;
+}
+.hero-shock{
+  position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:10px;height:10px;border-radius:50%;
+  background:transparent;border:2px solid var(--cognac);
+  pointer-events:none;z-index:5;opacity:0;
+}
+
+/* ── Wordmark ── */
+.cs-stage{
+  position:relative;z-index:10;
+  display:flex;flex-direction:column;align-items:center;
+  gap:clamp(28px,4vh,52px);
+  text-align:center;
+  padding:0 24px;
+}
+.hc-wordmark{
+  display:flex;align-items:baseline;gap:.04em;
+  font-family:var(--font-sans),sans-serif;
+  font-weight:200;
+  font-size:clamp(72px,14vw,160px);
+  letter-spacing:-.03em;
+  color:var(--ink);
+  line-height:1;
+}
+.hc-l{display:inline-block;opacity:0;transform:translateY(60px) scale(.7)}
+.hc-dot{color:var(--cognac);opacity:0;transform:translateX(-120px)}
+
+/* ── Coming soon ── */
+.cs-label{
+  font-family:var(--font-mono),monospace;
+  font-size:clamp(10px,1.4vw,13px);
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  color:var(--mocha);
+  opacity:0;
+  transform:translateY(12px);
+}
+
+/* ── Formulaire code ── */
+.cs-form{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  opacity:0;transform:translateY(16px);
+}
+.cs-input-wrap{
+  display:flex;align-items:center;
+  border-bottom:1.5px solid var(--ink-300);
+  gap:10px;
+  padding-bottom:6px;
+  transition:border-color .25s;
+}
+.cs-input-wrap:focus-within{border-color:var(--cognac)}
+.cs-lock{color:var(--mocha);font-size:13px;opacity:.7}
+.cs-input{
+  background:transparent;border:none;outline:none;
+  font-family:var(--font-mono),monospace;
+  font-size:clamp(13px,2vw,15px);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--ink);
+  width:min(200px,50vw);
+  text-align:center;
+}
+.cs-input::placeholder{color:var(--ink-100);letter-spacing:.18em}
+.cs-btn{
+  background:var(--cognac);color:#fff;border:none;
+  font-family:var(--font-sans),sans-serif;
+  font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
+  padding:11px 28px;border-radius:2px;
+  cursor:pointer;
+  transition:background .2s,transform .15s;
+}
+.cs-btn:hover{background:var(--cognac-700);transform:translateY(-1px)}
+.cs-btn:active{transform:translateY(0)}
+.cs-error{
+  font-family:var(--font-mono),monospace;
+  font-size:11px;letter-spacing:.12em;
+  color:var(--rose-700);
+  opacity:0;
+  transition:opacity .3s;
+  min-height:16px;
+}
+.cs-error.show{opacity:1}
+
+/* ── Tagline bas ── */
+.cs-tagline{
+  position:fixed;bottom:clamp(24px,4vh,40px);left:0;right:0;
+  text-align:center;
+  font-family:var(--font-serif),serif;
+  font-style:italic;
+  font-size:clamp(13px,1.6vw,16px);
+  color:var(--ink-300);
+  opacity:0;
+  z-index:10;
+}
+
+/* ── Reduced motion ── */
+@media(prefers-reduced-motion:reduce){
+  .hc-l,.hc-dot,.cs-label,.cs-form,.hero-glow,.hblob{opacity:1!important;transform:none!important}
+  .hc-path{opacity:.4!important;stroke-dashoffset:0!important}
+  .cs-tagline{opacity:1!important}
+}
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<div class="halo-wrap">
+  <div class="hblob hb1"></div>
+  <div class="hblob hb2"></div>
+  <div class="hblob hb3"></div>
+</div>
+
+<div class="hero-glow hg1"></div>
+<div class="hero-glow hg2"></div>
+<div class="hero-glow hg3"></div>
+
+<svg class="hero-contour" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g>
+    <path class="hc-path c1" d="M-50,540 C220,470 360,610 560,560 C780,505 900,360 1140,420 C1320,465 1420,400 1500,430"/>
+    <path class="hc-path c2" d="M-50,640 C260,600 380,700 620,650 C840,604 980,500 1180,540 C1340,572 1430,520 1500,545"/>
+    <path class="hc-path c3" d="M-50,440 C200,380 380,500 580,450 C800,396 920,270 1160,320 C1340,358 1430,300 1500,330"/>
+  </g>
+</svg>
+
+<div class="hero-flash"></div>
+<div class="hero-shock"></div>
+
+<div class="cs-stage">
+
+  <div class="hc-wordmark">
+    <span class="hc-l hc-l1">A</span>
+    <span class="hc-l hc-l2">L</span>
+    <span class="hc-l hc-l3">V</span>
+    <span class="hc-l hc-l4">A</span>
+    <span class="hc-dot">.</span>
+  </div>
+
+  <div class="cs-label">Coming soon</div>
+
+  <div class="cs-form">
+    <div class="cs-input-wrap">
+      <span class="cs-lock">&#9679;</span>
+      <input class="cs-input" type="text" id="codeInput" placeholder="CODE D'ACCÈS" autocomplete="off" maxlength="20" spellcheck="false">
+    </div>
+    <button class="cs-btn" id="codeBtn">Accéder</button>
+    <div class="cs-error" id="codeError">Code incorrect — réessayez</div>
+  </div>
+
+</div>
+
+<p class="cs-tagline" id="csTagline">Arriver quelque part, <em>et choisir d'y appartenir.</em></p>
+
+<script>
+(function(){
+  /* ── Vérification au chargement ── */
+  if(localStorage.getItem('alva_access')==='granted'){
+    window.location.replace('index.html');
+    return;
+  }
+
+  const ACCESS_CODE = 'Alva709';
+
+  /* ── Animation GSAP ── */
+  var tl = gsap.timeline({defaults:{ease:'cubic-bezier(.16,1,.3,1)'}});
+
+  // Halos + glows
+  tl.to('.hblob',{opacity:1,duration:2,stagger:.3},0)
+    .to('.hero-glow',{opacity:1,duration:2.5,stagger:.4},0.2)
+
+  // Lettres montent du bas
+    .to('.hc-l',{opacity:1,y:0,scale:1,duration:.7,stagger:.08},0.4)
+
+  // Point arrive de la gauche
+    .to('.hc-dot',{opacity:1,x:0,duration:.5,ease:'power3.out'},1.1)
+
+  // Flash + onde
+    .to('.hero-flash',{opacity:1,duration:.08},1.55)
+    .to('.hero-flash',{opacity:0,duration:.4},1.63)
+    .to('.hero-shock',{opacity:1,scale:1,duration:.05},1.55)
+    .to('.hero-shock',{scale:28,opacity:0,duration:.8,ease:'power2.out'},1.58)
+
+  // Courbes se dessinent
+    .to('.hero-contour',{opacity:1,duration:.1},1.6)
+    .to('.hc-path',{strokeDashoffset:0,opacity:.45,duration:1.4,stagger:.25,ease:'power2.out'},1.65)
+
+  // "Coming soon" + formulaire
+    .to('.cs-label',{opacity:1,y:0,duration:.6},2.0)
+    .to('.cs-form',{opacity:1,y:0,duration:.7},2.2)
+    .to('#csTagline',{opacity:1,duration:.8},2.5);
+
+  /* ── Logique du code ── */
+  function tryCode(){
+    var val = document.getElementById('codeInput').value.trim();
+    if(val === ACCESS_CODE){
+      localStorage.setItem('alva_access','granted');
+      gsap.to('.cs-stage',{opacity:0,y:-20,duration:.5,onComplete:function(){
+        window.location.replace('index.html');
+      }});
+    } else {
+      var err = document.getElementById('codeError');
+      err.classList.add('show');
+      gsap.fromTo('#codeInput',{x:-8},{x:0,duration:.4,ease:'elastic.out(1,.3)'});
+      setTimeout(function(){err.classList.remove('show')},2500);
+    }
+  }
+
+  document.getElementById('codeBtn').addEventListener('click', tryCode);
+  document.getElementById('codeInput').addEventListener('keydown', function(e){
+    if(e.key==='Enter') tryCode();
+  });
+})();
+</script>
+</body>
+</html>

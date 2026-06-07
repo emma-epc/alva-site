@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partenaires · ALVA Cognac</title>
+<meta name="description" content="Devenir partenaire d'ALVA : un public qualifié de la communauté militaire, un bouche-à-oreille puissant et un ancrage territorial fort. Découvrez les niveaux de partenariat.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/alva.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
+<body>
+<div class="grain"></div>
+<div id="cur"></div>
+<div id="curl"></div>
+<div id="globalHalo" aria-hidden="true"><div class="halo-blob halo-main"></div><div class="halo-blob halo-secondary"></div><div class="halo-blob halo-flash"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
+</nav>
+<div id="menu">
+  <div class="mmesh mmesh-1"></div><div class="mmesh mmesh-2"></div><div class="mmesh mmesh-3"></div>
+  <button class="mclose" id="mclose">Fermer <span style="font-size:16px">&#10005;</span></button>
+  <ul class="mlist"></ul>
+  <div class="mfoot"></div>
+</div>
+
+<main>
+  <header class="phead">
+    <div class="phead-kicker">Avec nous</div>
+    <h1 class="phead-title">Nos <b>partenaires</b></h1>
+    <p class="phead-intro reveal-words">S'associer à ALVA, c'est se positionner comme un acteur qui fait vivre la région autrement : par la transmission, la découverte et l'art de recevoir.</p>
+  </header>
+
+  <!-- LA CARTE ILLUSTRÉE DE COGNAC -->
+  <section class="section reveal-sect" style="padding-top:1rem">
+    <div class="wrap">
+      <div data-territory
+           data-eyebrow="Le territoire"
+           data-title="Les lieux qui nous <b>accueillent</b>"></div>
+    </div>
+  </section>
+
+  <!-- POURQUOI NOUS REJOINDRE -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Ce que ça vous apporte</div>
+      <h2 class="sec-title">Rejoindre ALVA, c'est un <b>vrai retour</b> sur le territoire.</h2>
+      <p class="sec-lead">Nos rendez-vous réunissent un public en plein renouvellement, qui découvre la région et cherche vite des adresses de confiance. Vous êtes au bon endroit, au bon moment.</p>
+      <div class="why">
+        <article class="why-card slide-in" data-side="left"><span class="why-ico alva-ico" data-icon="target" aria-hidden="true"></span><h3>Visibilité qualifiée</h3><p>Pas de l'audience pour faire du chiffre : des personnes réellement concernées, attentives, qui cherchent où aller et à qui faire confiance.</p></article>
+        <article class="why-card slide-in" data-side="left"><span class="why-ico alva-ico" data-icon="chat" aria-hidden="true"></span><h3>Impact relationnel</h3><p>On vous présente, on raconte votre histoire. Le lien se crée dans un cadre intime, sans prise de parole commerciale forcée.</p></article>
+        <article class="why-card slide-in" data-side="right"><span class="why-ico alva-ico" data-icon="pin" aria-hidden="true"></span><h3>Ancrage territorial</h3><p>Vous devenez un nom qui circule, recommandé de bouche-à-oreille, associé à une expérience qu'on a envie de partager.</p></article>
+      </div>
+      <div class="why-band">
+        <div class="why-pill"><span class="why-pill-ico alva-ico" data-icon="megaphone" aria-hidden="true"></span><div><b>Un bouche-à-oreille puissant</b><span>Après chaque soirée, les participants se recommandent entre eux les lieux et les adresses.</span></div></div>
+        <div class="why-pill"><span class="why-pill-ico alva-ico" data-icon="sparkle" aria-hidden="true"></span><div><b>Une association d'image claire</b><span>Une communication soignée : visuels, récit de la soirée, mise en avant dans un style éditorial cohérent.</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHIFFRES — public -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Des chiffres forts</div>
+      <h2 class="sec-title">Un public qui <b>compte</b>, vraiment.</h2>
+      <p class="sec-lead">La communauté militaire pèse lourd dans l'économie locale. C'est ce public, fidèle et prescripteur, que vos partenariats touchent directement.</p>
+      <div class="chiffres">
+        <div class="chiffre"><div class="chiffre-circle"><b class="reveal-count" data-target="5370">0</b></div><div class="chiffre-label">Emplois militaires en Charente &amp; Charente-Maritime</div></div>
+        <div class="chiffre"><div class="chiffre-circle"><b class="reveal-count" data-target="1700">0</b></div><div class="chiffre-label">Emplois en plus générés dans l'économie locale</div></div>
+        <div class="chiffre"><div class="chiffre-circle"><b class="reveal-count" data-target="14050">0</b></div><div class="chiffre-label">Habitants influencés par la base Rochefort–Saintes–Cognac–La Rochelle</div></div>
+        <div class="chiffre"><div class="chiffre-circle"><b class="reveal-count" data-target="1.3" data-decimals="1" data-suffix=" %">0</b></div><div class="chiffre-label">De la population des deux Charentes liée à la base</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NIVEAUX DE PARTENARIAT -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Quatre façons de nous rejoindre</div>
+      <h2 class="sec-title">Trouvez le rôle qui <b>vous ressemble</b>.</h2>
+      <div class="tiers">
+        <article class="tier reveal-scale">
+          <div class="tier-kind">Partenaire</div>
+          <h3>Signature</h3>
+          <p>Vous intervenez au cœur d'un rendez-vous ALVA : dégustation, démonstration ou transmission d'un savoir-faire. Votre présence s'inscrit dans le déroulé de la soirée, sans prise de parole commerciale.</p>
+          <div class="tier-chips"><span class="tier-chip">Présence pendant le dîner</span><span class="tier-chip">Temps d'attention dédié</span><span class="tier-chip">Échange libre avec les participants</span></div>
+        </article>
+        <article class="tier reveal-scale">
+          <div class="tier-kind">Partenaire</div>
+          <h3>Hôte</h3>
+          <p>Vous mettez à disposition un lieu de caractère pour accueillir une édition. Le lieu devient un élément central de l'expérience, valorisé par son usage, son ambiance et son histoire.</p>
+          <div class="tier-chips"><span class="tier-chip">Mise en valeur du lieu</span><span class="tier-chip">Projection émotionnelle</span><span class="tier-chip">Contenus visuels forts</span></div>
+        </article>
+        <article class="tier reveal-scale">
+          <div class="tier-kind">Partenaire</div>
+          <h3>Découverte</h3>
+          <p>Vous contribuez par une attention simple et cohérente : un objet, une création, un produit, une invitation. Une présence discrète mais durable, glissée dans les détails qui marquent la soirée.</p>
+          <div class="tier-chips"><span class="tier-chip">Présence durable dans l'esprit</span><span class="tier-chip">Engagement à faible contrainte</span><span class="tier-chip">Mémorisation forte</span></div>
+        </article>
+        <article class="tier reveal-scale">
+          <div class="tier-kind">Partenaire</div>
+          <h3>Talent</h3>
+          <p>Artiste, musicien·ne, créateur·rice : vous partagez votre univers le temps d'une soirée. Un moment vivant, devant un public attentif et disponible, dans un cadre qui vous met en valeur.</p>
+          <div class="tier-chips"><span class="tier-chip">Public attentif et disponible</span><span class="tier-chip">Découverte qualitative</span><span class="tier-chip">Association culturelle valorisante</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULAIRE -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">On en parle ?</div>
+      <h2 class="sec-title">Construisons quelque chose <b>ensemble</b>.</h2>
+      <form class="partner-form rv" action="https://formspree.io/f/votre_id" method="POST">
+        <div class="ct-ft">Parlez-nous de votre projet</div>
+        <div class="ct-fs">Votre lieu, votre savoir-faire ou votre envie de soutenir ALVA, en quelques mots. On revient vers vous sous 48h.</div>
+        <input type="hidden" name="_subject" value="ALVA — Nouveau partenaire potentiel">
+        <div class="pf-row">
+          <div class="fg"><label class="fl">NOM / STRUCTURE</label><input class="fi" type="text" name="nom" placeholder="Domaine, maison, prénom…" required></div>
+          <div class="fg"><label class="fl">EMAIL</label><input class="fi" type="email" name="email" placeholder="vous@email.com" required></div>
+        </div>
+        <div class="fg"><label class="fl">VOUS SERIEZ PLUTÔT…</label><input class="fi" type="text" name="profil" placeholder="Signature, Hôte, Découverte, Talent… ou autre"></div>
+        <div class="fg"><label class="fl">VOTRE PROJET</label><textarea class="fi" name="message" placeholder="Ce que vous aimeriez proposer ou partager…" required></textarea></div>
+        <button type="submit" class="ct-sub">Devenir partenaire</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <p class="pullquote">Ensemble, on ne fait pas que des événements. On fabrique un <b>territoire accueillant</b>.</p>
+    </div>
+  </section>
+</main>
+
+<footer></footer>
+
+<script src="data/lieux.js"></script>
+<script src="assets/alva.js"></script>
+</body>
+</html>

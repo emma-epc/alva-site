@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le concept · ALVA Cognac</title>
+<meta name="description" content="Le concept et le manifeste d'ALVA : pourquoi le lien ne se décrète pas, il se construit. Notre façon de transformer une installation à Cognac en vraies rencontres.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/alva.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
+<body>
+<div class="grain"></div>
+<div id="cur"></div>
+<div id="curl"></div>
+<div id="globalHalo" aria-hidden="true"><div class="halo-blob halo-main"></div><div class="halo-blob halo-secondary"></div><div class="halo-blob halo-flash"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
+</nav>
+<div id="menu">
+  <div class="mmesh mmesh-1"></div><div class="mmesh mmesh-2"></div><div class="mmesh mmesh-3"></div>
+  <button class="mclose" id="mclose">Fermer <span style="font-size:16px">&#10005;</span></button>
+  <ul class="mlist"></ul>
+  <div class="mfoot"></div>
+</div>
+
+<main>
+  <header class="phead">
+    <div class="phead-kicker">Notre histoire &amp; notre façon de faire</div>
+    <h1 class="phead-title">Le <b>concept</b></h1>
+    <p class="phead-intro reveal-words">Arriver quelque part de nouveau, ce n'est pas seulement déménager. C'est devoir se refaire un réseau, des repères, une vie. ALVA existe pour que ce recommencement soit habité, accompagné — et joyeux.</p>
+  </header>
+
+  <!-- MANIFESTE : la phrase fondatrice -->
+  <section id="about" class="reveal-sect" style="padding-top:1rem">
+    <div class="ab-in">
+      <div class="ab-big lup"><span class="lup-i">Le lien ne se décrète pas.</span></div>
+      <div class="ab-big lup d1"><span class="lup-i"><span class="it">Il se construit</span> dans la régularité</span></div>
+      <div class="ab-big lup d2"><span class="lup-i">des rencontres, dans une manière</span></div>
+      <div class="ab-big lup d3"><span class="lup-i">d'<span class="ac">accueillir.</span></span></div>
+    </div>
+  </section>
+
+  <!-- CONVICTION : panneaux qui entrent par les côtés -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="concept-panel">
+        <div class="slide-in" data-side="left">
+          <div class="sec-kicker">Notre conviction</div>
+          <h2 class="cp-title">Une ville ne s'habite pas seulement, <b>elle se rencontre.</b></h2>
+          <p class="cp-text">On peut vivre des mois dans une ville sans vraiment y appartenir. Croiser les mêmes rues, les mêmes commerces, sans jamais croiser de regards. ALVA refuse cette solitude tranquille : une poignée de bons moments, bien pensés, suffit à transformer une adresse en territoire de vie.</p>
+        </div>
+        <div class="concept-figure slide-in" data-side="right" aria-hidden="true"><img src="images/concept-lien.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+
+      <div class="concept-panel reverse">
+        <div class="slide-in" data-side="right">
+          <div class="sec-kicker">Ce qu'on fait, vraiment</div>
+          <h2 class="cp-title">On ne fabrique pas du réseau. On crée les conditions des <b>vraies rencontres.</b></h2>
+          <p class="cp-text">Pas de badge, pas de pitch, pas de carte de visite à distribuer. Juste un cadre choisi, une table, un lieu, et le temps qu'il faut pour que les choses se passent. Le reste, on vous fait confiance pour l'écrire.</p>
+        </div>
+        <div class="concept-figure f2 slide-in" data-side="left" aria-hidden="true"><img src="images/concept-table.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+
+      <div class="concept-panel">
+        <div class="slide-in" data-side="left">
+          <div class="sec-kicker">Ancrés ici</div>
+          <h2 class="cp-title">Rencontrer des gens, c'est aussi <b>rencontrer un lieu.</b></h2>
+          <p class="cp-text">On travaille main dans la main avec les domaines, les maisons et les artisans de Cognac. Chaque rendez-vous fait découvrir un endroit du territoire — et fait vivre celles et ceux qui le font tourner.</p>
+        </div>
+        <div class="concept-figure f3 slide-in" data-side="right" aria-hidden="true"><img src="images/concept-territoire.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+
+      <div class="concept-panel reverse">
+        <div class="slide-in" data-side="right">
+          <div class="sec-kicker">Trois formats</div>
+          <h2 class="cp-title">Pensés pour <b>tous les rythmes.</b></h2>
+          <ul class="cp-formats cp-formats--bare">
+            <li><div><b>Signature</b> — dîners et soirées dans des lieux d'exception, en tout petit comité, autour du goût et du patrimoine.</div></li>
+            <li><div><b>Format léger</b> — brunchs, balades, ateliers, cours en plein air : se rencontrer sans cérémonie.</div></li>
+            <li><div><b>Découverte</b> — visites privées, rencontres d'artisans, lieux d'habitude fermés : Cognac autrement, ensemble.</div></li>
+          </ul>
+        </div>
+        <div class="concept-figure slide-in" data-side="left" aria-hidden="true"><img src="images/concept-formats.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LE DÉROULÉ : grille qui défile toute seule -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Le déroulé</div>
+      <h2 class="sec-title">De l'inscription à la rencontre, en <b>quatre temps</b>.</h2>
+    </div>
+    <div class="marquee" aria-label="Les quatre étapes">
+      <div class="marquee-track">
+        <article class="mq-step"><span class="mq-n">01</span><h3>Vous choisissez</h3><p>Parcourez l'agenda, réservez en quelques clics. Les places sont limitées, exprès : on garde des groupes à taille humaine.</p></article>
+        <article class="mq-step"><span class="mq-n">02</span><h3>On prépare le cadre</h3><p>Lieu, accueil, déroulé : tout est pensé pour que vous n'ayez qu'à venir. Les infos pratiques arrivent avant le jour J.</p></article>
+        <article class="mq-step"><span class="mq-n">03</span><h3>On se rencontre</h3><p>Le temps d'un dîner, d'une visite ou d'une matinée, on partage un vrai moment. Sans pression, sans réseau à « performer ».</p></article>
+        <article class="mq-step"><span class="mq-n">04</span><h3>Le lien continue</h3><p>Les visages deviennent familiers d'un rendez-vous à l'autre. C'est là, doucement, que naît le sentiment d'appartenir.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- POUR QUI + CITATION EMMA -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="concept-panel">
+        <div class="slide-in" data-side="left">
+          <div class="sec-kicker">Pour qui</div>
+          <h2 class="cp-title">Un espace de confiance, <b>grand ouvert.</b></h2>
+          <p class="cp-text">En priorité pour les familles fraîchement arrivées, la communauté militaire et leurs conjoint·es — mais la porte reste large pour toute personne qui veut tisser du lien ici. Selon les formats, les enfants sont les bienvenus.</p>
+        </div>
+        <div class="slide-in" data-side="right">
+          <div class="ab-q" style="font-size:clamp(20px,2.4vw,28px);color:rgba(43,32,24,.82)">« On est partis de notre propre expérience : arriver dans une nouvelle ville et devoir tout reconstruire. ALVA, c'est la main qu'on aurait aimé qu'on nous tende. »</div>
+          <div class="ab-sig">EMMA POUGET · FONDATRICE &amp; PRÉSIDENTE DE L'ASSOCIATION ALVA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="cta-band">
+        <h2>Le plus simple, c'est de venir une fois.</h2>
+        <p>Choisissez un rendez-vous, on s'occupe du reste. À très vite, quelque part dans Cognac.</p>
+        <a href="les-rendez-vous.html" class="ev-btn" data-link>Voir les rendez-vous</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer></footer>
+
+<script src="assets/alva.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mentions légales · ALVA Cognac</title>
+<meta name="description" content="Mentions légales, conditions générales, politique de confidentialité et cookies de l'association ALVA (Cognac).">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/alva.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
+<body>
+<div class="grain"></div>
+<div id="cur"></div>
+<div id="curl"></div>
+<div id="globalHalo" aria-hidden="true"><div class="halo-blob halo-main"></div><div class="halo-blob halo-secondary"></div><div class="halo-blob halo-flash"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
+</nav>
+<div id="menu">
+  <div class="mmesh mmesh-1"></div><div class="mmesh mmesh-2"></div><div class="mmesh mmesh-3"></div>
+  <button class="mclose" id="mclose">Fermer <span style="font-size:16px">&#10005;</span></button>
+  <ul class="mlist"></ul>
+  <div class="mfoot"></div>
+</div>
+
+<main>
+  <header class="phead">
+    <div class="phead-kicker">Informations légales</div>
+    <h1 class="phead-title">Mentions <b>légales</b></h1>
+    <p class="phead-intro">La transparence fait partie de la confiance. Voici l'essentiel — les champs entre crochets sont à compléter avant la mise en ligne.</p>
+  </header>
+
+  <section class="section reveal-sect" style="padding-top:1rem">
+    <div class="wrap">
+      <div class="legal-doc">
+        <h2 id="editeur">Éditeur du site</h2>
+        <p>Le présent site est édité par l'<b>association ALVA</b>, association régie par la loi du 1<sup>er</sup> juillet 1901.</p>
+        <ul>
+          <li>Siège social : [adresse], Cognac (16100)</li>
+          <li>RNA / SIREN : [numéro]</li>
+          <li>Représentante légale : Emma Pouget, présidente</li>
+          <li>Contact : contact@alva-communaute.fr</li>
+        </ul>
+
+        <h2 id="hebergeur">Hébergement</h2>
+        <p>Le site est hébergé par [nom de l'hébergeur], [adresse de l'hébergeur], [contact].</p>
+
+        <h2 id="cgu">Conditions générales d'utilisation</h2>
+        <p>L'accès et l'utilisation du site impliquent l'acceptation des présentes conditions. Le contenu (textes, visuels, identité ALVA) est protégé ; toute reproduction sans autorisation est interdite. Les inscriptions aux rendez-vous sont gérées via la plateforme HelloAsso, soumise à ses propres conditions.</p>
+        <p class="legal-note">À adapter selon le détail de vos services (adhésion, billetterie, responsabilité lors des événements…).</p>
+
+        <h2 id="confidentialite">Politique de confidentialité</h2>
+        <p>Les données que vous nous transmettez (nom, e-mail, téléphone) servent uniquement à gérer votre inscription, vous tenir informé·e des rendez-vous et répondre à vos messages. Elles ne sont ni vendues ni cédées à des tiers.</p>
+        <ul>
+          <li>Base légale : votre consentement et l'intérêt légitime de l'association.</li>
+          <li>Conservation : le temps de la relation, puis archivage limité.</li>
+          <li>Vos droits : accès, rectification, suppression, opposition — écrivez à contact@alva-communaute.fr.</li>
+        </ul>
+
+        <h2 id="cookies">Cookies</h2>
+        <p>Ce site utilise un minimum de cookies. Les cartes (fonds cartographiques) et certains contenus peuvent déposer des cookies techniques nécessaires à leur affichage. Aucun cookie publicitaire n'est utilisé.</p>
+        <p class="legal-note">Si vous ajoutez des outils de mesure d'audience (ex. statistiques), pensez à mettre à jour cette section et à proposer un choix de consentement.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer></footer>
+
+<script src="assets/alva.js"></script>
+</body>
+</html>

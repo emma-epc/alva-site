@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact · ALVA Cognac</title>
+<meta name="description" content="Contactez ALVA : inscription, liste d'attente, partenariat ou simple curiosité. On répond à tout le monde, sous 48h. Cognac, Charente.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/alva.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="data/config.js"></script>
+</head>
+<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
+<body>
+<div class="grain"></div>
+<div id="cur"></div>
+<div id="curl"></div>
+<div id="globalHalo" aria-hidden="true"><div class="halo-blob halo-main"></div><div class="halo-blob halo-secondary"></div><div class="halo-blob halo-flash"></div></div>
+
+<nav id="nav">
+  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
+</nav>
+<div id="menu">
+  <div class="mmesh mmesh-1"></div><div class="mmesh mmesh-2"></div><div class="mmesh mmesh-3"></div>
+  <button class="mclose" id="mclose">Fermer <span style="font-size:16px">&#10005;</span></button>
+  <ul class="mlist"></ul>
+  <div class="mfoot"></div>
+</div>
+
+<main>
+  <header class="phead">
+    <div class="phead-kicker">Écrivons-nous</div>
+    <h1 class="phead-title">Contact</h1>
+    <p class="phead-intro reveal-words">Une envie de participer, une question, un projet de partenariat ? On lit tout, on répond à tout le monde, sous 48h.</p>
+  </header>
+
+  <!-- FORMULAIRE direct -->
+  <section class="section reveal-sect" style="padding-top:1rem">
+    <div class="ct-simple">
+      <div class="ct-form rv">
+        <div class="ct-ft">Nous écrire</div>
+        <div class="ct-fs">Partenariat, inscription sur liste d'attente, ou simplement pour faire connaissance. <b style="color:var(--cognac)">Réponse sous 48h.</b></div>
+        <form action="https://formspree.io/f/votre_id" method="POST">
+          <div class="fg"><label class="fl">NOM ET PRÉNOM</label><input class="fi" type="text" name="nom" placeholder="Marie Dupont" required></div>
+          <div class="fg"><label class="fl">EMAIL</label><input class="fi" type="email" name="email" placeholder="marie@email.com" required></div>
+          <div class="fg"><label class="fl">SUJET</label><input class="fi" type="text" name="sujet" placeholder="Inscription, partenariat, question…"></div>
+          <div class="fg"><label class="fl">MESSAGE</label><textarea class="fi" name="message" placeholder="Votre message…" required></textarea></div>
+          <button type="submit" class="ct-sub">Envoyer</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Questions fréquentes</div>
+      <h2 class="sec-title">Avant de venir, <b>l'essentiel</b>.</h2>
+      <div class="faq">
+        <div class="faq-item"><button class="faq-q" type="button">Faut-il être adhérent ?<span class="faq-ico" aria-hidden="true"></span></button><div class="faq-a"><div class="faq-a-in">Non. Certains rendez-vous sont ouverts à tous ; d'autres sont réservés aux adhérents. C'est précisé sur chaque date.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Je viens seul·e, c'est gênant ?<span class="faq-ico" aria-hidden="true"></span></button><div class="faq-a"><div class="faq-a-in">Au contraire : la plupart des participants viennent seuls. Tout est pensé pour que personne ne reste à l'écart.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Les enfants sont-ils acceptés ?<span class="faq-ico" aria-hidden="true"></span></button><div class="faq-a"><div class="faq-a-in">Selon les formats. Les rendez-vous « familles » leur sont dédiés, c'est indiqué dans le détail de l'événement.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Comment régler ma place ?<span class="faq-ico" aria-hidden="true"></span></button><div class="faq-a"><div class="faq-a-in">Le paiement se fait à l'inscription, via le lien sécurisé HelloAsso de chaque rendez-vous. Certains formats sont gratuits.</div></div></div>
+        <div class="faq-item"><button class="faq-q" type="button">Je ne suis pas de la communauté militaire, puis-je venir ?<span class="faq-ico" aria-hidden="true"></span></button><div class="faq-a"><div class="faq-a-in">Oui ! ALVA s'adresse en priorité aux familles qui arrivent et à la communauté militaire, mais la porte reste ouverte à toute personne qui veut tisser du lien ici.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RÉSEAUX SOCIAUX -->
+  <section class="section reveal-sect">
+    <div class="wrap">
+      <div class="sec-kicker">Suivez-nous</div>
+      <h2 class="sec-title">On se retrouve <b>aussi par ici</b>.</h2>
+      <p class="sec-lead">Les coulisses, les prochains rendez-vous et les souvenirs des soirées : c'est sur nos réseaux.</p>
+      <div class="ct-social" data-social-links></div>
+    </div>
+  </section>
+</main>
+
+<footer></footer>
+
+<script src="assets/alva.js"></script>
+</body>
+</html>

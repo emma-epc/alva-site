@@ -1,0 +1,8 @@
+Placez ici la photo d'Emma, nommée exactement :  emma-pouget.jpg
+
+Elle s'affichera automatiquement dans la section « Qui nous sommes » de la
+page d'accueil. Tant que le fichier est absent, un joli dégradé pastel
+s'affiche à la place (aucune erreur visible).
+
+Vous pouvez aussi ajouter ici les logos / photos de vos partenaires et de
+vos événements passés.
