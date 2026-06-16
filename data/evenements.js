@@ -112,6 +112,13 @@ const EVENEMENTS = [
   }
 ];
 
+/* ─────────────────────────────────────────────────────────────────────
+   AUCUN rendez-vous à venir n'est affiché pour l'instant.
+   Les événements ci-dessus sont CONSERVÉS comme modèle (mise en page).
+   Pour les réafficher, commentez ou supprimez la ligne suivante : */
+EVENEMENTS.length = 0;
+/* ───────────────────────────────────────────────────────────────────── */
+
 // Libellés lisibles pour les types d'événement
 const EVENT_TYPES = {
   signature: "Signature",

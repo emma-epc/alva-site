@@ -3,13 +3,13 @@
    Modifiez ici les infos communes à tout le site (email, réseaux, IDs).
    ===================================================================== */
 const ALVA_CONFIG = {
-  email: "contact@alva-communaute.fr",
+  email: "contact@asso-alva.fr",
   instagram: "https://instagram.com/alva.cognac",
   instagramHandle: "@alva.cognac",
   // Remplacez VOTRE_ID par l'identifiant de votre formulaire Formspree
   // (https://formspree.io). Sert pour les formulaires contact / partenaire
   // et les confirmations d'inscription.
-  formspreeId: "VOTRE_ID",
+  formspreeId: "mvznlwbv",
   ville: "Cognac · Charente",
   annee: "2026",
   statut: "Association ALVA · Loi 1901",

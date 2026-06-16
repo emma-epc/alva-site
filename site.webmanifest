@@ -1,0 +1,19 @@
+{
+  "name": "ALVA — Communauté d'accueil à Cognac",
+  "short_name": "ALVA",
+  "description": "L'association qui relie celles et ceux qui arrivent à Cognac : dîners, ateliers et visites pour transformer une installation en vraies rencontres.",
+  "lang": "fr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FAF6EF",
+  "theme_color": "#2B2018",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any maskable"
+    }
+  ]
+}

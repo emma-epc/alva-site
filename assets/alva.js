@@ -624,14 +624,14 @@ safe('eventSearch', function(){
     function render(isInit){
       let list=EVENEMENTS.slice().sort((a,b)=>a.date.localeCompare(b.date));
       if(isInit){
-        if(initial<=0){ grid.innerHTML=''; count.innerHTML='<span class="evs-prompt">Lancez une recherche : un dîner, une balade, une visite… on vous montre ce qui arrive.</span>'; return; }
+        if(initial<=0){ grid.innerHTML=''; count.innerHTML='<span class="evs-prompt">Tous les événements à venir à Cognac et dans les alentours</span>'; return; }
         list=list.slice(0,initial);
-        count.textContent='Quelques rendez-vous à venir — affinez avec la recherche';
+        count.textContent='';
       }else{
         list=list.filter(matches);
         count.textContent=list.length? list.length+' rendez-vous trouvé'+(list.length>1?'s':'') : '';
       }
-      grid.innerHTML=list.length?list.map(card).join(''):'<p class="evs-prompt">Aucun rendez-vous ne correspond — élargissez la recherche ou rejoignez la liste d\'attente.</p>';
+      grid.innerHTML=list.length?list.map(card).join(''):'<p class="evs-prompt">Aucun rendez-vous à afficher pour le moment — inscrivez-vous à la newsletter pour être prévenu·e des prochaines dates.</p>';
       if(window.__rebindCursor) window.__rebindCursor();
     }
     form.addEventListener('submit',e=>{e.preventDefault();searched=true;render(false);});
@@ -648,6 +648,7 @@ safe('eventSearch', function(){
 safe('book', function(){
   const stage=document.getElementById('bookStage');
   if(!stage || typeof EVENEMENTS_PASSES==='undefined') return;
+  if(stage.offsetParent===null) return; // section masquée (display:none) → on n'initialise pas
   const list=EVENEMENTS_PASSES.slice().sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4);
   const tot=list.length;
   function pageHTML(ev,i){
@@ -1009,7 +1010,7 @@ safe('bonsPlans', function(){
 
   // ---- Avantages : regroupés par catégorie, filtre interactif animé ----
   const av=document.getElementById('bpAvantages');
-  if(av && typeof AVANTAGES!=='undefined'){
+  if(av && typeof AVANTAGES!=='undefined' && AVANTAGES.length){
     const cats=Array.from(new Set(AVANTAGES.map(a=>a.categorie)));
     av.innerHTML='<div class="bp-av-tabs">'
       +'<button class="bp-av-tab on" data-cat="tous">Tout</button>'
@@ -1060,7 +1061,7 @@ safe('bonsPlans', function(){
         if(term){ const hay=_norm([a.titre,a.lieu,a.categorie,(a.tags||[]).join(' ')].join(' ')); if(!term.split(/\s+/).every(w=>hay.includes(w))) return false; }
         return true;
       });
-      count.textContent=list.length+' sortie'+(list.length>1?'s':'')+' à Cognac';
+      count.textContent='';
       grid.innerHTML=list.length?list.map(row).join(''):'<p class="evs-prompt">Rien à cet endroit-là — élargissez la recherche.</p>';
       if(window.__rescanReveals) window.__rescanReveals(grid);
       if(window.__rebindCursor) window.__rebindCursor();
@@ -1158,16 +1159,18 @@ const ALVA_SOCIAL={
 window.ALVA_SOCIAL=ALVA_SOCIAL;
 
 safe('nav', function(){
-  const path=(location.pathname.split('/').pop()||'index.html').toLowerCase()||'index.html';
-  const onIndex=(path==='index.html'||path==='');
+  // URLs propres (sans .html) : on normalise le chemin courant pour le marquage « current ».
+  let path=(location.pathname||'/').toLowerCase().replace(/\/+$/,'').replace(/\.html$/,'');
+  if(path===''||path==='/index') path='/';
+  const onIndex=(path==='/');
 
   // Liste canonique du menu (sans numéros, sans page « Événements passés », concept+manifeste fusionnés).
   const MENU=[
-    ['les-rendez-vous.html','Les rendez-vous'],
-    ['bons-plans.html','Bons plans'],
-    ['le-concept.html','Le concept'],
-    ['partenaires.html','Partenaires'],
-    ['contact.html','Contact']
+    ['/les-rendez-vous','Les rendez-vous'],
+    ['/bons-plans','Bons plans'],
+    ['/le-concept','Le concept'],
+    ['/partenaires','Partenaires'],
+    ['/contact','Contact']
   ];
 
   const menu=document.getElementById('menu');
@@ -1186,7 +1189,8 @@ safe('nav', function(){
   // ---- Pied de page : nav linéaire cliquable, sur chaque page ----
   const footer=document.querySelector('footer');
   if(footer){
-    const links=[['index.html','Accueil']].concat(MENU);
+    const email=(window.ALVA_CONFIG&&ALVA_CONFIG.email)||'contact@asso-alva.fr';
+    const links=[['/','Accueil']].concat(MENU);
     const fnav=links.map(([href,label])=>{
       const cur=(href===path)?' class="current"':'';
       return '<a href="'+href+'"'+cur+'>'+label+'</a>';
@@ -1195,15 +1199,16 @@ safe('nav', function(){
       const [url,name,svg]=ALVA_SOCIAL[k];
       return '<a href="'+url+'" target="_blank" rel="noopener" aria-label="'+name+'">'+svg+'</a>';
     }).join('');
-    const legal='<nav class="flegal" aria-label="Mentions légales">'
-      +'<a href="mentions-legales.html">Mentions légales</a>'
-      +'<a href="mentions-legales.html#cgu">CGU</a>'
-      +'<a href="mentions-legales.html#confidentialite">Confidentialité</a>'
-      +'<a href="mentions-legales.html#cookies">Cookies</a></nav>';
+    const legal='<nav class="flegal" aria-label="Informations légales">'
+      +'<a href="/mentions-legales">Mentions légales</a>'
+      +'<a href="/cgu">CGU</a>'
+      +'<a href="/politique-confidentialite">Confidentialité</a>'
+      +'<a href="/politique-confidentialite#cookies">Cookies</a></nav>';
     footer.innerHTML=
       '<div class="foot-wrap">'
-      +'<div class="foot-top"><a href="index.html" class="flogo" data-home>ALVA<b>.</b></a><nav class="fnav" aria-label="Pied de page">'+fnav+'</nav></div>'
-      +'<div class="foot-bottom"><span class="fcopy">© '+(new Date().getFullYear())+' Association ALVA · Loi 1901</span>'+legal+'<div class="fsocial">'+social+'</div></div>'
+      +'<div class="foot-top"><a href="/" class="flogo" data-home>ALVA<b>.</b></a><nav class="fnav" aria-label="Pied de page">'+fnav+'</nav></div>'
+      +'<div class="foot-bottom"><span class="fcopy">© '+(new Date().getFullYear())+' Association ALVA · Loi 1901</span>'+legal
+      +'<div class="fsocial"><a class="fmail" href="mailto:'+email+'">'+email+'</a>'+social+'</div></div>'
       +'</div>';
   }
 
@@ -1242,11 +1247,11 @@ safe('nav', function(){
     mail:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="m4 7 8 6 8-6"/></svg>'
   };
   const BN=[
-    ['index.html','Accueil',I.home],
-    ['les-rendez-vous.html','RDV',I.cal],
-    ['bons-plans.html','Bons plans',I.tag],
-    ['partenaires.html','Partenaires',I.star],
-    ['contact.html','Contact',I.mail]
+    ['/','Accueil',I.home],
+    ['/les-rendez-vous','RDV',I.cal],
+    ['/bons-plans','Bons plans',I.tag],
+    ['/partenaires','Partenaires',I.star],
+    ['/contact','Contact',I.mail]
   ];
   if(!document.querySelector('.botnav')){
     const bar=document.createElement('nav');
@@ -1270,4 +1275,83 @@ safe('socialLinks', function(){
     return '<a href="'+url+'" target="_blank" rel="noopener" class="soc-link"><span class="soc-ic" aria-hidden="true">'+svg+'</span><span>'+name+'</span></a>';
   }).join('');
   if(window.__rebindCursor) window.__rebindCursor();
+});
+
+/* ============================ FORMULAIRES DE CONTACT (Formspree, AJAX) ============================
+   Branche les formulaires simples (contact + partenaires) sur Formspree, en
+   asynchrone (pas de rechargement) → confirmation affichée sur place.
+   Tant que l'ID Formspree n'est pas renseigné dans data/config.js, on bascule
+   sur un mail pré-rempli (mailto) pour ne perdre AUCUN message. */
+safe('contactForms', function(){
+  const forms=document.querySelectorAll('form[data-contact]');
+  if(!forms.length) return;
+  const cfg=window.ALVA_CONFIG||{};
+  const configured = cfg.formspreeId && cfg.formspreeId!=='VOTRE_ID';
+
+  forms.forEach(form=>{
+    if(configured){ form.setAttribute('action', cfg.formspreeUrl); form.setAttribute('method','POST'); }
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      const data=Object.fromEntries(new FormData(form).entries());
+
+      // Formspree pas encore branché → on ouvre le mail pré-rempli vers l'asso.
+      if(!configured){
+        const to=cfg.email||'contact@asso-alva.fr';
+        const subject=encodeURIComponent(data._subject || data.sujet || 'Message depuis le site ALVA');
+        const body=encodeURIComponent(
+          Object.entries(data).filter(([k])=>k.charAt(0)!=='_')
+            .map(([k,v])=>k.toUpperCase()+' : '+v).join('\n'));
+        window.location.href='mailto:'+to+'?subject='+subject+'&body='+body;
+        return;
+      }
+
+      const btn=form.querySelector('[type="submit"]');
+      const old=btn?btn.textContent:'';
+      if(btn){ btn.disabled=true; btn.textContent='Envoi…'; }
+      fetch(cfg.formspreeUrl,{method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        body:JSON.stringify(Object.assign({_replyto:data.email}, data))})
+        .then(r=>{
+          if(!r.ok) throw new Error('formspree');
+          const prenom=data.nom?String(data.nom).split(' ')[0]:'';
+          form.innerHTML='<div class="form-sent"><div class="form-sent-ic" aria-hidden="true">&#10003;</div>'
+            +'<h3>Message bien reçu&nbsp;!</h3><p>Merci '+prenom+'. On vous répond sous 48h'
+            +(data.email?(' sur <b>'+data.email+'</b>'):'')+'.</p></div>';
+        })
+        .catch(()=>{
+          if(btn){ btn.disabled=false; btn.textContent=old; }
+          let err=form.querySelector('.form-err');
+          if(!err){ err=document.createElement('p'); err.className='form-err'; if(btn) btn.insertAdjacentElement('afterend',err); }
+          err.textContent='Oups, l’envoi a échoué. Écrivez-nous directement à '+(cfg.email||'contact@asso-alva.fr')+'.';
+        });
+    });
+  });
+});
+
+/* ============================ DONNÉES STRUCTURÉES « Event » (SEO) ============================
+   Génère un bloc JSON-LD schema.org/Event par rendez-vous (page agenda) à partir
+   de data/evenements.js → éligibilité aux résultats enrichis Google. */
+safe('eventJsonLd', function(){
+  if(typeof EVENEMENTS==='undefined' || !Array.isArray(EVENEMENTS)) return;
+  if(!/\/les-rendez-vous/.test(location.pathname)) return;
+  EVENEMENTS.slice(0,12).forEach(ev=>{
+    const obj={
+      "@context":"https://schema.org","@type":"Event",
+      "name":ev.titre,
+      "startDate":ev.date,
+      "description":ev.description||'',
+      "eventStatus":"https://schema.org/EventScheduled",
+      "eventAttendanceMode":"https://schema.org/OfflineEventAttendanceMode",
+      "organizer":{"@type":"Organization","name":"ALVA","url":"https://asso-alva.fr"},
+      "location":{"@type":"Place","name":ev.lieu,
+        "address":{"@type":"PostalAddress","addressLocality":"Cognac","addressRegion":"Charente","addressCountry":"FR"}},
+      "offers":{"@type":"Offer","price":(ev.prix||0),"priceCurrency":"EUR",
+        "availability":(ev.placesRestantes>0?"https://schema.org/InStock":"https://schema.org/SoldOut"),
+        "url":ev.helloassoUrl||"https://asso-alva.fr/les-rendez-vous"}
+    };
+    const s=document.createElement('script');
+    s.type='application/ld+json';
+    s.textContent=JSON.stringify(obj);
+    document.head.appendChild(s);
+  });
 });

@@ -13,17 +13,16 @@
      TIPS_ARRIVEE     conseils pratiques pour les nouvelles familles
    ===================================================================== */
 
-const AVANTAGES = [
-  { partenaire:"Café des Arts",        icon:"cup",    categorie:"Gourmand",          description:"Le QG des nouveaux arrivants, café de spécialité en plein centre.", avantage:"-15% sur la première commande" },
-  { partenaire:"Brûlerie de Cognac",   icon:"cup",    categorie:"Gourmand",          description:"Torréfaction maison, le meilleur café de la ville à emporter.", avantage:"Le 10e paquet offert" },
-  { partenaire:"La Table du Marché",   icon:"wine",   categorie:"Gourmand",          description:"Cuisine de saison et produits d'ici, à deux pas des Halles.", avantage:"Le café offert au déjeuner" },
-  { partenaire:"Librairie du Château", icon:"book",   categorie:"Culture",           description:"Indépendante, rayon jeunesse et conseils aux petits oignons.", avantage:"-10% sur les livres jeunesse" },
-  { partenaire:"Musée des arts du cognac", icon:"book", categorie:"Culture",         description:"Pour comprendre la ville et son histoire en une visite.", avantage:"Entrée à tarif réduit" },
-  { partenaire:"Studio Mouvement",     icon:"lotus",  categorie:"Sport & bien-être", description:"Yoga, pilates et danse, dans une ambiance bienveillante.", avantage:"1er cours d'essai offert" },
-  { partenaire:"Base nautique",        icon:"paddle", categorie:"Sport & bien-être", description:"Canoë et paddle sur la Charente, encadrés et accessibles.", avantage:"-15% sur la location" },
-  { partenaire:"Vélos de la Charente", icon:"bike",   categorie:"Mobilité",          description:"Location et réparation, idéal pour explorer les quais.", avantage:"-20% sur la location week-end" },
-  { partenaire:"Fleurs & Cie",         icon:"flower", categorie:"Maison",            description:"Pour fleurir un nouveau chez-soi ou remercier un hôte.", avantage:"-10% toute l'année" }
-];
+/* AVANTAGES — vide pour l'instant : aucun avantage n'est affiché sur le site.
+   Un modèle est conservé ci-dessous (masqué) pour réactiver la rubrique :
+   il suffit d'ajouter des objets dans le tableau AVANTAGES ci-dessous.
+
+   MODÈLE (à dupliquer) :
+   { partenaire:"Café des Arts", icon:"cup", categorie:"Gourmand",
+     description:"Café de spécialité en plein centre.", avantage:"-15% sur la première commande" }
+   Icônes possibles : cup, book, wine, lotus, paddle, bike, flower, music…
+   Catégories : Gourmand, Culture, Sport & bien-être, Mobilité, Maison. */
+const AVANTAGES = [];
 
 const AGENDA_COGNAC = [
   { titre:"Marché des producteurs", date:"Tous les samedis matin", lieu:"Les Halles · Cognac", categorie:"Marché",
@@ -49,11 +48,11 @@ const COUPS_DE_COEUR = [
 ];
 
 const TIPS_ARRIVEE = [
-  { icon:"school", titre:"École & crèche", texte:"Inscriptions en mairie. Les crèches affichent vite complet : anticipez dès l'annonce de mutation." },
-  { icon:"health", titre:"Médecin",        texte:"Pensez à la Maison de santé pour trouver un médecin traitant plus facilement." },
-  { icon:"basket", titre:"Marché",          texte:"Le samedi matin aux Halles : produits frais et premiers contacts avec les habitués." },
-  { icon:"phone",  titre:"Apps utiles",     texte:"L'appli de la ville pour les déchets et événements, et le réseau de bus local." },
-  { icon:"bag",    titre:"Où acheter quoi", texte:"Centre-ville pour les indépendants, zone nord pour les grandes surfaces." },
+  { icon:"school", titre:"École & crèche", texte:"Pour les écoles publiques, le Pôle Éducation-Jeunesse se trouve au Couvent des Récollets, 53 rue d'Angoulême. Contact : 05 45 36 55 41. Pour les crèches, le premier interlocuteur est le Relais Petite Enfance, 6 rue de la Prédasse, au 06 37 08 02 69." },
+  { icon:"health", titre:"Santé",          texte:"Pour chercher un médecin ou prendre un premier rendez-vous, le Centre de santé municipal est situé au 8 rue Camille Godard. Standard : 09 82 99 18 16. En cas d'urgence vitale, composez le 15." },
+  { icon:"basket", titre:"Marché",          texte:"Les Halles de Cognac, place d'Armes, sont ouvertes du mardi au vendredi de 8h à 13h, et le week-end de 8h à 13h. Le marché de plein vent a lieu place du Champ de Foire les mardis et vendredis matin, de 8h à 13h." },
+  { icon:"phone",  titre:"Transports & déchets", texte:"Pour le bus, le réseau Transcom permet d'acheter ses titres sur l'application Modalis. L'agence Transcom est place Gambetta et joignable au 0 800 881 691. Pour les déchets, les bacs noirs sont collectés le lundi matin à Cognac, et les bacs jaunes le jeudi matin. En hypercentre : noirs les mardis et vendredis, jaunes le mercredi. Pensez à sortir les bacs la veille au soir." },
+  { icon:"bag",    titre:"Où acheter quoi", texte:"Pour les commerces du quotidien, commencez par le centre-ville, la rue Aristide Briand, les Halles et les rues autour de la place François Ier. Pour les grandes courses, l'équipement, la maison ou la voiture, regardez aussi du côté de Châteaubernard et d'Aushopping Cognac." },
   { icon:"people", titre:"Se faire des amis", texte:"Le plus simple : un premier rendez-vous ALVA. C'est fait pour ça !" }
 ];
 

@@ -1,0 +1,89 @@
+# ============================================================================
+#  ALVA — configuration Netlify
+#  URLs propres (.html → sans extension), cache long sur les assets, sécurité.
+# ============================================================================
+
+[build]
+  publish = "."
+
+# ── URLs propres : on redirige les vieilles URLs .html vers la version propre ──
+# (Netlify sert déjà /contact pour contact.html ; ces règles canonicalisent
+#  les anciens liens .html en 301 pour éviter le contenu dupliqué côté SEO.)
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/les-rendez-vous.html"
+  to = "/les-rendez-vous"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/bons-plans.html"
+  to = "/bons-plans"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/le-concept.html"
+  to = "/le-concept"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/partenaires.html"
+  to = "/partenaires"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact.html"
+  to = "/contact"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/mentions-legales.html"
+  to = "/mentions-legales"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cgu.html"
+  to = "/cgu"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/politique-confidentialite.html"
+  to = "/politique-confidentialite"
+  status = 301
+  force = true
+
+# ── Cache long sur les ressources versionnables (CSS/JS/polices/images) ──
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# ── En-têtes de sécurité (appliqués à toutes les pages) ──
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"

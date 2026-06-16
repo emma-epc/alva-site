@@ -3,18 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALVA. Au cœur du territoire · Cognac</title>
-<meta name="description" content="ALVA — une communauté pour celles et ceux qui arrivent à Cognac. Dîners, ateliers et visites pour transformer une installation en vraies rencontres.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tokens.css">
-<link rel="stylesheet" href="assets/alva.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<title>ALVA — Communauté militaire à Cognac, au cœur du territoire</title>
+<meta name="description" content="ALVA — l'association qui rompt l'isolement de la communauté militaire et de ses familles à Cognac : dîners, ateliers et visites pour transformer une installation en vraies rencontres.">
+<link rel="canonical" href="https://asso-alva.fr/">
+<meta name="theme-color" content="#2B2018">
+
+<!-- Open Graph / réseaux sociaux -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALVA">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="ALVA — Au cœur du territoire, à Cognac">
+<meta property="og:description" content="L'association qui relie la communauté militaire, ses familles et les acteurs locaux à Cognac : dîners, ateliers et visites pour transformer une installation en vraies rencontres.">
+<meta property="og:url" content="https://asso-alva.fr/">
+<meta property="og:image" content="https://asso-alva.fr/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ALVA — Au cœur du territoire, à Cognac">
+<meta name="twitter:description" content="L'association qui relie la communauté militaire, ses familles et les acteurs locaux à Cognac.">
+<meta name="twitter:image" content="https://asso-alva.fr/images/og-cover.jpg">
+
+<!-- Favicons / manifest -->
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/assets/fonts.css">
+
+<link rel="stylesheet" href="/assets/tokens.css">
+<link rel="stylesheet" href="/assets/alva.css">
+
+<script defer src="/assets/vendor/gsap.min.js"></script>
+<script defer src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script defer src="/data/config.js"></script>
+<script defer src="/data/evenements.js"></script>
+<script defer src="/assets/alva.js"></script>
+
+<!-- Données structurées : l'association -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "NGO",
+  "name": "ALVA",
+  "alternateName": "Association ALVA",
+  "url": "https://asso-alva.fr",
+  "logo": "https://asso-alva.fr/favicon.svg",
+  "image": "https://asso-alva.fr/images/og-cover.jpg",
+  "email": "contact@asso-alva.fr",
+  "description": "L'association qui rompt l'isolement de la communauté militaire et de ses familles à Cognac : dîners, ateliers et visites pour transformer une installation en vraies rencontres.",
+  "foundingDate": "2026",
+  "areaServed": { "@type": "City", "name": "Cognac" },
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Cognac",
+    "postalCode": "16100",
+    "addressRegion": "Charente",
+    "addressCountry": "FR"
+  },
+  "sameAs": [
+    "https://instagram.com/alva.cognac",
+    "https://facebook.com/alva.cognac",
+    "https://linkedin.com/company/alva-cognac"
+  ]
+}
+</script>
 </head>
 <body>
-<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
 <div class="grain"></div>
 <div id="cur"></div>
 <div id="curl"></div>
@@ -22,7 +76,7 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <a href="/" class="nlogo">ALVA<b>.</b></a>
   <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
 </nav>
 
@@ -52,32 +106,28 @@
   <div class="hero-shock" aria-hidden="true"></div>
 
   <div class="hero-c">
-    <div class="hc-wordmark"><span class="hc-l hc-l1">A</span><span class="hc-l hc-l2">L</span><span class="hc-l hc-l3">V</span><span class="hc-l hc-l4">A</span><span class="hc-dot">.</span></div>
-    <div class="hero-tagline">Arriver quelque part, <em>et choisir d'y appartenir.</em></div>
+    <h1 class="hc-wordmark"><span class="hc-l hc-l1">A</span><span class="hc-l hc-l2">L</span><span class="hc-l hc-l3">V</span><span class="hc-l hc-l4">A</span><span class="hc-dot">.</span><span class="sr-only"> — ALVA, communauté militaire à Cognac : rompre l'isolement et créer du lien au cœur du territoire</span></h1>
+    <div class="hero-tagline">Au cœur du territoire</div>
   </div>
 </section>
 
-<!-- PROCHAINS RENDEZ-VOUS — moteur de recherche (style Airbnb), rien tant qu'on n'a pas cherché -->
+<!-- PROCHAINS RENDEZ-VOUS — moteur de recherche (style Airbnb) -->
 <section id="events" class="reveal-sect">
   <div class="ev-in">
     <div class="ev-head">
       <div>
-        <div class="sec-kicker reveal-curtain">Ce qui arrive</div>
         <h2 class="reveal-curtain">Les prochains <b>rendez-vous</b></h2>
       </div>
-      <p class="ev-intro rv d1">Dites-nous ce qui vous tente — un dîner, une balade, une visite — et on vous montre les prochaines occasions de se rencontrer.</p>
     </div>
     <div data-event-search data-initial="0"></div>
   </div>
 </section>
 
-<!-- ÉVÉNEMENTS PASSÉS — le « livre » qui tourne ses pages au scroll -->
-<section id="book" class="reveal-sect">
+<!-- ÉVÉNEMENTS PASSÉS — section MASQUÉE (conservée pour réutilisation) -->
+<section id="book" class="reveal-sect" style="display:none" aria-hidden="true">
   <div class="book-pin">
     <div class="book-head rv">
-      <div class="book-eyebrow">Déjà vécu ensemble</div>
       <h2>Ce qu'on a <b>déjà partagé</b></h2>
-      <p>Tournez les pages : derrière chaque soirée, des visages qu'on ne connaissait pas la veille.</p>
     </div>
     <div class="book-stage" id="bookStage"></div>
   </div>
@@ -87,20 +137,20 @@
 <section id="who" class="reveal-sect">
   <div class="who-in">
     <div class="who-rv">
-      <div class="who-kicker">Qui nous sommes</div>
-      <h2 class="who-title"><strong>ALVA.</strong> crée des points d'ancrage pour celles et ceux qui arrivent à Cognac et veulent transformer une installation en vraie rencontre.</h2>
-      <p class="who-text">Des dîners, des ateliers, des visites, des formats intimistes : on relie la communauté militaire, les familles fraîchement arrivées et les gens d'ici qui font vivre le territoire.</p>
-      <a href="le-concept.html" class="who-link" data-link>Découvrir notre histoire <span class="ar">&#8594;</span></a>
+      <h2 class="who-title"><strong>ALVA.</strong> crée des points d'ancrage pour celles et ceux qui arrivent à Cognac et souhaitent transformer une installation en vraie rencontre.</h2>
+      <p class="who-text">À travers des dîners, des ateliers, des visites et des formats intimistes, l'association relie les familles de la communauté militaire, les nouveaux arrivants et les personnes d'ici qui font vivre le territoire.</p>
+      <p class="who-text">Parce qu'un territoire ne se découvre pas seulement sur une carte. Il se comprend à travers celles et ceux qui l'habitent, le racontent, le transmettent et l'ouvrent aux autres.</p>
+      <a href="/le-concept" class="who-link" data-link>Découvrir notre histoire <span class="ar">&#8594;</span></a>
     </div>
 
     <article class="who-card">
       <figure class="who-photo">
-        <img src="images/emma-pouget.jpg" alt="Portrait d'Emma Pouget" onerror="this.parentElement.classList.add('no-img')">
+        <img src="/images/emma-pouget.jpg" alt="Emma &amp; Ilona, cofondatrices de l'association ALVA" width="480" height="600" loading="lazy" onerror="this.parentElement.classList.add('no-img')">
       </figure>
       <div class="who-person">
-        <div class="who-name">Emma</div>
-        <div class="who-role">Fondatrice &amp; présidente de l'association ALVA</div>
-        <div class="who-desc">Elle imagine ALVA comme un espace d'accueil, de lien et de confiance : un projet pensé pour aider chacun à trouver sa place, rencontrer les bonnes personnes et découvrir Cognac autrement.</div>
+        <div class="who-name">Emma &amp; Ilona</div>
+        <div class="who-role">Cofondatrices de l'association ALVA</div>
+        <div class="who-desc">Nous avons imaginé ALVA comme un point d'ancrage au cœur du territoire. Parce qu'arriver quelque part ne suffit pas toujours à s'y sentir chez soi, nous voulons créer des occasions simples de rencontrer, d'échanger et de découvrir Cognac autrement. Dîners, ateliers, visites, moments de découverte : ALVA relie celles et ceux qui arrivent, les familles de la communauté militaire et les personnes d'ici qui font vivre le territoire au quotidien.</div>
       </div>
     </article>
   </div>
@@ -109,22 +159,21 @@
 <!-- TROIS UNIVERS -->
 <section id="univers" class="reveal-sect section">
   <div class="wrap">
-    <div class="sec-kicker reveal-curtain">Par où commencer</div>
-    <h2 class="sec-title">Trois portes d'entrée vers <b>la vie d'ici</b>.</h2>
+    <h2 class="sec-title">Rencontrer, découvrir, <b>s'ancrer à Cognac</b>.</h2>
     <div class="cards-grid">
-      <a href="les-rendez-vous.html" class="tile lglass reveal-scale" data-tilt data-link>
+      <a href="/les-rendez-vous" class="tile lglass reveal-scale" data-tilt data-link>
         <div class="tile-icon alva-ico" data-icon="calendar"></div><h3>Les rendez-vous</h3>
-        <p>Dîners, brunchs, balades, visites : choisissez le moment qui vous ressemble et réservez votre place.</p>
+        <p>Des dîners, brunchs, balades, ateliers et visites pour rencontrer d'autres personnes dans un cadre simple, accessible et chaleureux.</p>
         <span class="who-link" style="margin-top:1.2rem">Voir l'agenda <span class="ar">&#8594;</span></span>
       </a>
-      <a href="bons-plans.html" class="tile lglass reveal-scale" data-tilt data-link>
-        <div class="tile-icon alva-ico" data-icon="map"></div><h3>Les bons plans</h3>
-        <p>La carte des bonnes adresses, l'agenda de la ville et les avantages réservés à la communauté militaire.</p>
+      <a href="/bons-plans" class="tile lglass reveal-scale" data-tilt data-link>
+        <div class="tile-icon alva-ico" data-icon="map"></div><h3>Les adresses locales</h3>
+        <p>Des lieux, des activités et des bonnes adresses pour découvrir Cognac autrement et prendre ses repères plus facilement.</p>
         <span class="who-link" style="margin-top:1.2rem">Explorer Cognac <span class="ar">&#8594;</span></span>
       </a>
-      <a href="partenaires.html" class="tile lglass reveal-scale" data-tilt data-link>
-        <div class="tile-icon alva-ico" data-icon="people"></div><h3>Nos partenaires</h3>
-        <p>Les lieux et les savoir-faire qui font vivre nos rencontres — et toutes les raisons de nous rejoindre.</p>
+      <a href="/partenaires" class="tile lglass reveal-scale" data-tilt data-link>
+        <div class="tile-icon alva-ico" data-icon="people"></div><h3>Les partenaires</h3>
+        <p>Des acteurs locaux engagés aux côtés d'ALVA pour accueillir les nouveaux arrivants, partager leur savoir-faire et faire vivre le territoire.</p>
         <span class="who-link" style="margin-top:1.2rem">Devenir partenaire <span class="ar">&#8594;</span></span>
       </a>
     </div>
@@ -136,25 +185,20 @@
   <div class="ct-in">
     <div>
       <div class="ct-name rv">ALVA<b>.</b></div>
-      <div class="ct-serif rv d1">Une envie de nous rejoindre, une question, une idée ?</div>
       <div class="ct-rows rv d2">
-        <div class="ct-row"><span class="ct-lbl">INSTAGRAM</span><a href="https://instagram.com/alva.cognac" class="ct-val" target="_blank">@alva.cognac</a></div>
-        <div class="ct-row"><span class="ct-lbl">EMAIL</span><a href="mailto:contact@alva-communaute.fr" class="ct-val">contact@alva-communaute.fr</a></div>
+        <div class="ct-row"><span class="ct-lbl">INSTAGRAM</span><a href="https://instagram.com/alva.cognac" class="ct-val" target="_blank" rel="noopener">@alva.cognac</a></div>
+        <div class="ct-row"><span class="ct-lbl">EMAIL</span><a href="mailto:contact@asso-alva.fr" class="ct-val">contact@asso-alva.fr</a></div>
         <div class="ct-row"><span class="ct-lbl">OÙ</span><span class="ct-val" style="cursor:none">Cognac · Charente</span></div>
       </div>
     </div>
     <div class="ct-cta rv d1">
-      <div class="ct-ft">On se rencontre ?</div>
-      <div class="ct-fs">Pour participer, proposer un lieu ou simplement faire connaissance : écrivez-nous, on répond à tout le monde sous 48h.</div>
-      <a href="contact.html" class="ct-cta-btn" data-link>Nous écrire <span class="ar">&#8594;</span></a>
+      <div class="ct-ft">Envie de nous rejoindre ?</div>
+      <div class="ct-fs">Écrivez-nous, on répond à tout le monde sous 48h.</div>
+      <a href="/contact" class="ct-cta-btn" data-link>Nous écrire <span class="ar">&#8594;</span></a>
     </div>
   </div>
 </section>
 
 <footer></footer>
-
-<script src="data/config.js"></script>
-<script src="data/evenements.js"></script>
-<script src="assets/alva.js"></script>
 </body>
 </html>

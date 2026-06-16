@@ -3,19 +3,43 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Bons plans · ALVA Cognac</title>
-<meta name="description" content="Cognac par ceux qui y vivent : la carte de la ville, les avantages réservés à la communauté militaire, l'agenda et les coups de cœur du mois.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;700;900&family=League+Spartan:wght@200;300;400;500;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500;1,600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/tokens.css">
+<title>Bons plans à Cognac — la carte, l'agenda &amp; les avantages | ALVA</title>
+<meta name="description" content="Cognac par celles et ceux qui y vivent : la carte de la ville, les avantages ALVA réservés à la communauté militaire, l'agenda et les bons réflexes en arrivant.">
+<link rel="canonical" href="https://asso-alva.fr/bons-plans">
+<meta name="theme-color" content="#2B2018">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ALVA">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Bons plans à Cognac — la carte, l'agenda &amp; les avantages">
+<meta property="og:description" content="Cognac par celles et ceux qui y vivent : la carte de la ville, les avantages ALVA, l'agenda et les bons réflexes en arrivant.">
+<meta property="og:url" content="https://asso-alva.fr/bons-plans">
+<meta property="og:image" content="https://asso-alva.fr/images/og-cover.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Bons plans à Cognac | ALVA">
+<meta name="twitter:description" content="La carte de la ville, les avantages ALVA, l'agenda et les bons réflexes en arrivant.">
+<meta name="twitter:image" content="https://asso-alva.fr/images/og-cover.jpg">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.svg">
+<link rel="manifest" href="/site.webmanifest">
+
+<link rel="stylesheet" href="/assets/fonts.css">
+
+<link rel="stylesheet" href="/assets/tokens.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/alva.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<link rel="stylesheet" href="/assets/alva.css">
+
+<script defer src="/assets/vendor/gsap.min.js"></script>
+<script defer src="/assets/vendor/ScrollTrigger.min.js"></script>
+<script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script defer src="/data/config.js"></script>
+<script defer src="/data/bons-plans.js"></script>
+<script defer src="/data/lieux.js"></script>
+<script defer src="/assets/alva.js"></script>
 </head>
-<script>if(localStorage.getItem('alva_access')!=='granted'){window.location.replace('coming-soon.html')}</script>
 <body>
 <div class="grain"></div>
 <div id="cur"></div>
@@ -23,7 +47,7 @@
 <div id="globalHalo" aria-hidden="true"><div class="halo-blob halo-main"></div><div class="halo-blob halo-secondary"></div><div class="halo-blob halo-flash"></div></div>
 
 <nav id="nav">
-  <a href="index.html" class="nlogo">ALVA<b>.</b></a>
+  <a href="/" class="nlogo">ALVA<b>.</b></a>
   <button class="mbtn" id="mbtn" aria-label="Menu"><span class="mbtn-t">Menu</span><span class="mbtn-i"><span></span><span></span></span></button>
 </nav>
 <div id="menu">
@@ -35,16 +59,14 @@
 
 <main>
   <header class="phead">
-    <div class="phead-kicker">La vie à Cognac</div>
-    <h1 class="phead-title reveal-curtain">Cognac, <b>par ceux qui y vivent</b></h1>
-    <p class="phead-intro reveal-words">Le carnet d'adresses qu'on aurait aimé qu'on nous glisse en arrivant : la carte de la ville, les bons plans et tout ce qui aide à se sentir vite chez soi.</p>
+    <h1 class="phead-title reveal-curtain">Cognac, <b>par celles et ceux qui y vivent</b></h1>
+    <p class="phead-intro reveal-words">Où boire un café, où se promener, où sortir, qui rencontrer, quoi découvrir : on rassemble ici les adresses et les idées utiles quand on arrive à Cognac.</p>
   </header>
 
   <!-- LA CARTE ILLUSTRÉE DE COGNAC -->
   <section class="section reveal-sect" style="padding-top:1rem">
     <div class="wrap">
       <div data-territory
-           data-eyebrow="Le carnet de la communauté"
            data-title="La carte de <b>Cognac</b>"></div>
     </div>
   </section>
@@ -52,12 +74,11 @@
   <!-- AVANTAGES COMMUNAUTÉ MILITAIRE -->
   <section class="section reveal-sect">
     <div class="wrap">
-      <div class="sec-kicker">Entre nous</div>
-      <h2 class="sec-title">Les <b>avantages</b> de la communauté.</h2>
-      <p class="sec-lead">Des commerçants d'ici réservent un petit geste à celles et ceux qui font vivre la base. Pas de code à saisir : il suffit de vous présenter.</p>
+      <h2 class="sec-title">Les <b>avantages</b> ALVA.</h2>
+      <p class="sec-lead">Des commerçants et partenaires de Cognac proposent des attentions réservées à la communauté militaire et à leurs familles, pour faciliter la découverte du territoire et encourager les rencontres locales.</p>
       <div class="bp-attest">
         <span class="ic alva-ico" data-icon="shield" aria-hidden="true"></span>
-        <p>Ces avantages sont réservés à la <b>communauté militaire</b> : sur présentation de votre carte militaire ou de celle de votre conjoint·e. En bénéficiant d'un avantage, vous <b>attestez sur l'honneur</b> en faire partie — un justificatif pourra vous être demandé à l'arrivée.</p>
+        <p>Pour en bénéficier, il suffit de vous présenter auprès du partenaire concerné. En utilisant un avantage ALVA, vous <b>attestez sur l'honneur</b> faire partie de la communauté militaire ou y être rattaché·e. Un justificatif pourra vous être demandé sur place.</p>
       </div>
       <div id="bpAvantages" class="bp-av-wrap"></div>
     </div>
@@ -66,9 +87,8 @@
   <!-- AGENDA DE COGNAC (recherche) -->
   <section class="section reveal-sect">
     <div class="wrap">
-      <div class="sec-kicker">À ne pas manquer</div>
       <h2 class="sec-title">L'<b>agenda</b> de Cognac.</h2>
-      <p class="sec-lead">Marchés, concerts, expos, balades : cherchez ce qui vous tente, on vous emmène directement à la bonne adresse.</p>
+      <p class="sec-lead">Marchés, concerts, expositions, balades, ateliers, événements locaux : retrouvez les prochains rendez-vous autour de chez vous à ne pas manquer.</p>
       <div id="bpAgenda" style="margin-top:2rem"></div>
     </div>
   </section>
@@ -76,9 +96,7 @@
   <!-- COUPS DE CŒUR DU MOIS PROCHAIN -->
   <section class="section reveal-sect">
     <div class="wrap">
-      <div class="sec-kicker">On vous le dit</div>
       <h2 class="sec-title">Nos 3 <b>coups de cœur</b> du mois prochain.</h2>
-      <p class="sec-lead">Ce qu'on a déjà coché dans nos agendas — et qu'on a hâte de vivre avec vous.</p>
       <div class="bp-coups stagger" id="bpCoups"></div>
     </div>
   </section>
@@ -86,9 +104,7 @@
   <!-- À SAVOIR EN ARRIVANT -->
   <section class="section reveal-sect">
     <div class="wrap">
-      <div class="sec-kicker">Les premiers réflexes</div>
       <h2 class="sec-title">À <b>savoir</b> en arrivant.</h2>
-      <p class="sec-lead">Les démarches et bons réflexes qui font gagner des semaines quand on débarque.</p>
       <div class="bp-tips stagger" id="bpTips"></div>
     </div>
   </section>
@@ -97,19 +113,14 @@
   <section class="section reveal-sect">
     <div class="wrap">
       <div class="cta-band">
-        <h2>Un bon plan à partager ?</h2>
-        <p>Une adresse, un événement, un commerçant qui mérite d'être dans le carnet ? Dites-le-nous — on enrichit la communauté ensemble.</p>
-        <a href="contact.html" class="ev-btn" data-link>Proposer une adresse</a>
+        <h2>Une adresse à recommander ?</h2>
+        <p>Un lieu utile, un commerçant accueillant, un événement à ne pas manquer ou une bonne idée à partager, ALVA avance aussi grâce à celles et ceux qui connaissent le territoire et ont envie de le faire découvrir.</p>
+        <a href="/contact" class="ev-btn" data-link>Proposer une adresse</a>
       </div>
     </div>
   </section>
 </main>
 
 <footer></footer>
-
-<script src="data/config.js"></script>
-<script src="data/bons-plans.js"></script>
-<script src="data/lieux.js"></script>
-<script src="assets/alva.js"></script>
 </body>
 </html>
