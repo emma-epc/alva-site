@@ -1409,4 +1409,21 @@ safe('prefetch', function(){
   const eager=()=>prefetchAll('#menu a[href], nav a[href], [data-link]');
   if('requestIdleCallback' in window) requestIdleCallback(eager, {timeout:2500});
   else setTimeout(eager, 1200);
+
+  // ── Prerender (Speculation Rules) : Chrome/Edge construisent la page cible
+  //    EN ENTIER en arrière-plan dès le survol d'un lien de navigation → au
+  //    clic, elle s'affiche instantanément (plus rien à charger ni à calculer).
+  //    Bien plus puissant que le prefetch (qui ne fait que télécharger). ──
+  if(HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules')){
+    const sr=document.createElement('script');
+    sr.type='speculationrules';
+    sr.textContent=JSON.stringify({
+      prerender:[{
+        source:'document',
+        where:{ selector_matches:'#menu a[href], nav a[href], [data-link]' },
+        eagerness:'moderate'   // au survol / appui (max 2 en parallèle, géré par le navigateur)
+      }]
+    });
+    document.body.appendChild(sr);
+  }
 });
