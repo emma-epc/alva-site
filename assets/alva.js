@@ -128,23 +128,23 @@ safe('heroC', function(){
       .set(navEl||{},{opacity:0})
       .set(wm,{y:riseY,scale:.08});
     // 1+2 — montée du bas + grossissement
-    tl.to(wm,{y:0,scale:1,duration:1.05,ease:'power3.out'},0.1);
+    tl.to(wm,{y:0,scale:1,duration:0.6,ease:'power3.out'},0.04);
     // 3 — le point traverse depuis la gauche
-    tl.set(dot,{opacity:1},0.96)
-      .to(dot,{x:0,duration:0.64,ease:'power2.out'},0.96);
+    tl.set(dot,{opacity:1},0.5)
+      .to(dot,{x:0,duration:0.4,ease:'power2.out'},0.5);
     // domino : chaque lettre bousculée au passage du point
-    tl.to(letters,{y:-16,rotation:(i)=>[-3,2.4,-2,3][i]||0,duration:.12,stagger:{each:.07,from:'start'},ease:'power2.out'},1.02)
-      .to(letters,{y:0,rotation:0,duration:.62,stagger:{each:.07,from:'start'},ease:'elastic.out(1,.5)'},1.16);
+    tl.to(letters,{y:-16,rotation:(i)=>[-3,2.4,-2,3][i]||0,duration:.1,stagger:{each:.05,from:'start'},ease:'power2.out'},0.56)
+      .to(letters,{y:0,rotation:0,duration:.45,stagger:{each:.05,from:'start'},ease:'elastic.out(1,.5)'},0.66);
     // 4 — flash + onde de choc
-    tl.to(flash||{},{opacity:.2,duration:.07,ease:'power1.out'},1.2)
-      .to(flash||{},{opacity:0,duration:.13,ease:'power1.in'},1.27)
-      .fromTo(shock||{},{scale:1,opacity:.32},{scale:24,opacity:0,duration:.6,ease:'power2.out'},1.2);
+    tl.to(flash||{},{opacity:.2,duration:.06,ease:'power1.out'},0.62)
+      .to(flash||{},{opacity:0,duration:.1,ease:'power1.in'},0.68)
+      .fromTo(shock||{},{scale:1,opacity:.32},{scale:24,opacity:0,duration:.5,ease:'power2.out'},0.62);
     // 5 — les courbes se dessinent + signature + header
-    tl.to(contours,{strokeDashoffset:0,duration:1.0,stagger:.16,ease:'power2.out'},1.55)
-      .to(tagline,{opacity:1,y:0,duration:.9,ease:'power2.out'},1.72)
-      .to(navEl||{},{opacity:1,duration:.5},1.72);
+    tl.to(contours,{strokeDashoffset:0,duration:0.6,stagger:.1,ease:'power2.out'},0.85)
+      .to(tagline,{opacity:1,y:0,duration:.5,ease:'power2.out'},0.95)
+      .to(navEl||{},{opacity:1,duration:.4},0.95);
     // respiration du point
-    tl.to(dot,{scale:1.12,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:-1},2.5);
+    tl.to(dot,{scale:1.12,duration:1.4,ease:'sine.inOut',yoyo:true,repeat:-1},1.5);
   }
   window.__playHero=play;
   play();
