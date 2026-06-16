@@ -1394,4 +1394,19 @@ safe('prefetch', function(){
     const a=e.target.closest && e.target.closest('a[href]'); if(!a) return;
     const url=target(a); if(url) prefetch(url);
   }, {passive:true});
+
+  // Précharge en lot les liens d'un conteneur (menu, footer, barre du bas).
+  function prefetchAll(sel){
+    document.querySelectorAll(sel).forEach(a=>{ const u=target(a); if(u) prefetch(u); });
+  }
+  // Menu hamburger : ses liens ne sont pas survolés (on l'ouvre puis on clique
+  // direct). On précharge donc TOUTES ses pages dès qu'on l'ouvre.
+  const mbtn=document.getElementById('mbtn');
+  if(mbtn) mbtn.addEventListener('click', ()=>prefetchAll('#menu a[href]'), {passive:true});
+  // Filet de sécurité : dès que le navigateur est inactif, on précharge les
+  // quelques pages de navigation (menu plein écran, footer, barre du bas) →
+  // toute navigation devient instantanée, même sans survol préalable.
+  const eager=()=>prefetchAll('#menu a[href], nav a[href], [data-link]');
+  if('requestIdleCallback' in window) requestIdleCallback(eager, {timeout:2500});
+  else setTimeout(eager, 1200);
 });
