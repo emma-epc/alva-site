@@ -317,7 +317,7 @@ html:not(.has-js) .hero-tagline{opacity:1}
 .who-link{display:inline-flex;align-items:center;gap:12px;margin-top:2rem;font-family:var(--S);font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);transition:gap .3s var(--o),color .3s var(--o)}
 .who-link:hover{gap:22px;color:var(--orange)}
 .who-link .ar{font-size:16px}
-.who-rv.who-anim .who-kicker,.who-rv.who-anim .who-title,.who-rv.who-anim .who-text,.who-rv.who-anim .who-link{opacity:0;transform:translateY(24px);transition:opacity .9s var(--o),transform .9s var(--o)}
+.who-rv.who-anim .who-kicker,.who-rv.who-anim .who-title,.who-rv.who-anim .who-text,.who-rv.who-anim .who-link{opacity:0;transform:translateY(24px);transition:opacity .45s var(--o),transform .45s var(--o)}
 .who-rv.who-anim.vis .who-kicker,.who-rv.who-anim.vis .who-title,.who-rv.who-anim.vis .who-text,.who-rv.who-anim.vis .who-link{opacity:1;transform:translateY(0)}
 .who-card{display:grid;grid-template-columns:minmax(280px,420px) minmax(0,1fr);align-items:center;gap:0;margin-top:5rem;max-width:1080px;transition:opacity .9s var(--o),transform .9s var(--o)}
 .who-card.who-anim{opacity:0;transform:translateY(36px)}
@@ -585,15 +585,15 @@ footer{padding:3rem 3.5rem 2.4rem;border-top:1px solid rgba(43,32,24,.1)}
 /* ============================ REVEALS ============================ */
 /* Repli : sans JS, le contenu reste visible. Le masquage initial n'est
    appliqué que si le JS a posé .has-js sur <html>. */
-.rv{opacity:1;transform:none;transition:opacity .9s var(--o),transform .9s var(--o)}
+.rv{opacity:1;transform:none;transition:opacity .45s var(--o),transform .45s var(--o)}
 .has-js .rv{opacity:0;transform:translateY(28px)}
 .has-js .rv.vis{opacity:1;transform:translateY(0)}
-.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.2s}.rv.d3{transition-delay:.3s}
+.rv.d1{transition-delay:.05s}.rv.d2{transition-delay:.1s}.rv.d3{transition-delay:.15s}
 .lup{overflow:hidden}
-.lup-i{display:block;transform:none;transition:transform .9s var(--o)}
+.lup-i{display:block;transform:none;transition:transform .45s var(--o)}
 .has-js .lup-i{transform:translateY(110%)}
 .has-js .lup.vis .lup-i{transform:translateY(0)}
-.lup.d1 .lup-i{transition-delay:.08s}.lup.d2 .lup-i{transition-delay:.16s}.lup.d3 .lup-i{transition-delay:.24s}.lup.d4 .lup-i{transition-delay:.32s}
+.lup.d1 .lup-i{transition-delay:.04s}.lup.d2 .lup-i{transition-delay:.08s}.lup.d3 .lup-i{transition-delay:.12s}.lup.d4 .lup-i{transition-delay:.16s}
 
 /* ---- Système Ribbit : chaque type d'élément a sa propre entrée ----
    Sans JS (.has-js absent) tout reste visible. .vis = état final. */
@@ -601,33 +601,33 @@ footer{padding:3rem 3.5rem 2.4rem;border-top:1px solid rgba(43,32,24,.1)}
   --rd:0s;will-change:transform,opacity,clip-path;
 }
 /* Titres : rideau qui monte (clip-path) facon Keynote */
-.has-js .reveal-curtain{clip-path:inset(0 0 100% 0);opacity:.001;transition:clip-path 1s var(--o) var(--rd),opacity .6s linear var(--rd)}
+.has-js .reveal-curtain{clip-path:inset(0 0 100% 0);opacity:.001;transition:clip-path .5s var(--o) var(--rd),opacity .35s linear var(--rd)}
 .has-js .reveal-curtain.vis{clip-path:inset(0 0 0% 0);opacity:1}
 /* Paragraphes : glissent depuis la gauche */
-.has-js .reveal-left{opacity:0;transform:translateX(-80px);transition:opacity .9s var(--o) var(--rd),transform .9s var(--o) var(--rd)}
+.has-js .reveal-left{opacity:0;transform:translateX(-80px);transition:opacity .45s var(--o) var(--rd),transform .45s var(--o) var(--rd)}
 .has-js .reveal-left.vis{opacity:1;transform:translateX(0)}
 /* Cartes events : arrivent de la droite (stagger appliqué par --rd ou nth-child) */
-.has-js .reveal-right{opacity:0;transform:translateX(100px);transition:opacity .85s var(--o) var(--rd),transform .85s var(--o) var(--rd)}
+.has-js .reveal-right{opacity:0;transform:translateX(100px);transition:opacity .45s var(--o) var(--rd),transform .45s var(--o) var(--rd)}
 .has-js .reveal-right.vis{opacity:1;transform:translateX(0)}
 /* Past cards / cartes : montée en scale */
-.has-js .reveal-scale{opacity:0;transform:scale(.88);transition:opacity .8s var(--o) var(--rd),transform .8s var(--o) var(--rd)}
+.has-js .reveal-scale{opacity:0;transform:scale(.88);transition:opacity .45s var(--o) var(--rd),transform .45s var(--o) var(--rd)}
 .has-js .reveal-scale.vis{opacity:1;transform:scale(1)}
 /* Images / médias : s'ouvrent depuis le centre */
-.has-js .reveal-open{clip-path:inset(0 50% 0 50%);transition:clip-path 1s var(--o) var(--rd)}
+.has-js .reveal-open{clip-path:inset(0 50% 0 50%);transition:clip-path .5s var(--o) var(--rd)}
 .has-js .reveal-open.vis{clip-path:inset(0 0% 0 0%)}
 /* Compteurs : léger fondu en plus du décompte JS */
-.has-js .reveal-count{opacity:0;transition:opacity .6s linear var(--rd)}
+.has-js .reveal-count{opacity:0;transition:opacity .4s linear var(--rd)}
 .has-js .reveal-count.vis{opacity:1}
 /* Stagger automatique pour une série de cartes/paragraphes qui se suivent */
 .stagger > *:nth-child(1){--rd:0s}
-.stagger > *:nth-child(2){--rd:.12s}
-.stagger > *:nth-child(3){--rd:.24s}
-.stagger > *:nth-child(4){--rd:.36s}
-.stagger > *:nth-child(5){--rd:.48s}
-.stagger > *:nth-child(6){--rd:.6s}
-.stagger > *:nth-child(7){--rd:.72s}
-.stagger > *:nth-child(8){--rd:.84s}
-.rd1{--rd:.1s}.rd2{--rd:.2s}.rd3{--rd:.3s}.rd4{--rd:.4s}.rd5{--rd:.5s}
+.stagger > *:nth-child(2){--rd:.06s}
+.stagger > *:nth-child(3){--rd:.12s}
+.stagger > *:nth-child(4){--rd:.18s}
+.stagger > *:nth-child(5){--rd:.24s}
+.stagger > *:nth-child(6){--rd:.3s}
+.stagger > *:nth-child(7){--rd:.36s}
+.stagger > *:nth-child(8){--rd:.42s}
+.rd1{--rd:.05s}.rd2{--rd:.1s}.rd3{--rd:.15s}.rd4{--rd:.2s}.rd5{--rd:.25s}
 
 /* ============================ RESPONSIVE ============================ */
 @media(max-width:1024px){

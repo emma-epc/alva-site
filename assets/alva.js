@@ -1355,3 +1355,43 @@ safe('eventJsonLd', function(){
     document.head.appendChild(s);
   });
 });
+
+/* ============================ PRÉCHARGEMENT (navigation instantanée) ============================
+   Au survol (souris) ou au tout début du tap (mobile) d'un lien interne, la page
+   cible est préchargée en arrière-plan (<link rel="prefetch">). Le clic la charge
+   alors depuis le cache → ouverture quasi instantanée. Inspiré d'instant.page.
+   Respecte l'économiseur de données et les connexions très lentes. */
+safe('prefetch', function(){
+  const conn=navigator.connection;
+  if(conn && (conn.saveData || /(^|-)2g$/.test(conn.effectiveType||''))) return;
+  const test=document.createElement('link');
+  if(!(test.relList && test.relList.supports && test.relList.supports('prefetch'))) return;
+
+  const done=new Set();
+  function prefetch(url){
+    if(done.has(url)) return; done.add(url);
+    const l=document.createElement('link');
+    l.rel='prefetch'; l.href=url;
+    document.head.appendChild(l);
+  }
+  function target(a){
+    if(!a || !a.getAttribute('href')) return null;
+    let u; try{ u=new URL(a.href, location.href); }catch(_){ return null; }
+    if(u.origin!==location.origin) return null;                    // lien externe
+    if(u.pathname.replace(/\/$/,'')===location.pathname.replace(/\/$/,'')) return null; // page courante
+    if(a.hasAttribute('download')) return null;
+    if(/\.(pdf|zip|jpe?g|png|webp|svg|mp4|woff2?)$/i.test(u.pathname)) return null; // fichiers
+    return u.origin+u.pathname;                                    // URL nette (sans #/?)
+  }
+  let t=null;
+  document.addEventListener('pointerover', e=>{
+    const a=e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    const url=target(a); if(!url) return;
+    clearTimeout(t); t=setTimeout(()=>prefetch(url), 60);  // petit délai = intention réelle
+    a.addEventListener('pointerout', ()=>clearTimeout(t), {once:true});
+  }, {passive:true});
+  document.addEventListener('touchstart', e=>{
+    const a=e.target.closest && e.target.closest('a[href]'); if(!a) return;
+    const url=target(a); if(url) prefetch(url);
+  }, {passive:true});
+});
