@@ -63,21 +63,36 @@
   status = 301
   force = true
 
-# ── Cache long sur les ressources versionnables (CSS/JS/polices/images) ──
+# ── Cache ──
+# Les fichiers qui CHANGENT (CSS/JS du site, images, données) sont revalidés à
+# chaque visite (ETag → 304 si rien n'a bougé, sinon version fraîche) : les
+# mises à jour sont donc visibles tout de suite, sans vider le cache.
+# Le cache long « immutable » est réservé aux fichiers qui ne changent JAMAIS
+# (polices, librairies) → performance maximale sans risque de version périmée.
 [[headers]]
   for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/vendor/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/images/*"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/data/*"
   [headers.values]
-    Cache-Control = "public, max-age=86400"
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # ── En-têtes de sécurité (appliqués à toutes les pages) ──
 [[headers]]
